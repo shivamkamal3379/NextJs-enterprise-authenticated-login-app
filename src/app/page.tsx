@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
-import PageContent from "@/components/pageContent";
+import PageContent from "@/components/PageContent";
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState("home");
   const [showLoginModal, setShowLoginModal] = useState(true);
