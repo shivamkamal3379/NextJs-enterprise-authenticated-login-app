@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
-// Assuming these components handle their own theming based on props or context
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import PageContent from "@/components/PageContent";
-
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState("home");
   const [showLoginModal, setShowLoginModal] = useState(true);
@@ -31,25 +29,13 @@ export default function HomePage() {
     setIsDarkTheme(!isDarkTheme);
   };
 
-  // --- Theme Class Improvements ---
-  // 1. Used pure white (bg-white) for a cleaner light theme background.
-  // 2. Used a deeper gray (bg-gray-950) for a richer dark theme background.
-  const themeClasses = isDarkTheme 
-    ? "bg-gray-950 text-gray-100" 
-    : "bg-white text-gray-900";
-
   return (
     <div
-      className={`min-h-screen font-sans transition-colors duration-300 ${themeClasses}`}
+      className={`min-h-screen font-sans transition-colors duration-300 ${
+        isDarkTheme ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
+      }`}
     >
-      {/* Pass isDarkTheme down to the modal for consistent styling */}
-      {showLoginModal && 
-        <LoginModal 
-          onClose={() => setShowLoginModal(false)} 
-          onLogin={handleLogin} 
-          // isDarkTheme={isDarkTheme} // Prop added
-        />
-      }
+      {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onLogin={handleLogin} />}
 
       <Navbar
         isDarkTheme={isDarkTheme}
@@ -66,12 +52,11 @@ export default function HomePage() {
             isDarkTheme ? "bg-gray-800" : "bg-white"
           }`}
         >
-          {/* Pass isDarkTheme down to PageContent
-          <PageContent currentPage={currentPage} isDarkTheme={isDarkTheme} />  */}
+          <PageContent currentPage={currentPage} />
         </div>
       </main>
 
-      <Footer isDarkTheme={isDarkTheme} />
+      <Footer isDarkTheme={isDarkTheme} />  
     </div>
   );
 }
